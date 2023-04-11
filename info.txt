@@ -1,0 +1,5 @@
+Youtube playlist link
+https://www.youtube.com/watch?v=QK-589Wncck&list=PL_cUvD4qzbkwA7WITceoc2_FFjQsBkwX7&index=6
+
+Developer portal
+https://discord.com/developers/docs/interactions/application-commands
