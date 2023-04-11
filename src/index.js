@@ -9,7 +9,7 @@ import {
   ButtonStyle,
   ModalBuilder,
   TextInputBuilder,
-  TextInputStyle
+  TextInputStyle,
 } from "discord.js";
 import { REST } from "@discordjs/rest";
 import * as dotenv from "dotenv";
@@ -69,65 +69,6 @@ client.on(Events.InteractionCreate, (interaction) => {
   if (interaction.isChatInputCommand()) {
     console.log(interaction.options);
     interaction.reply({ content: "This interaction is a chat input command" });
-
-    // check every possibility
-    if (interaction.commandName == "button") {
-      const row = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setCustomId("primary")
-          .setLabel("Click this button to see magic")
-          .setStyle(ButtonStyle.Success)
-      );
-      interaction.reply({ content: "I think you should.", components: [row] });
-    } else if (interaction.commandName === "ping") {
-      const row = new ActionRowBuilder().addComponents(
-        new StringSelectMenuBuilder()
-          .setCustomId("select")
-          .setPlaceholder("Nothing selected")
-          .addOptions(
-            {
-              label: "Select me",
-              description: "This is a description",
-              value: "first_option",
-            },
-            {
-              label: "You can select me too",
-              description: "This is also a description",
-              value: "second_option",
-            }
-          )
-      );
-
-      interaction.reply({ content: "Pong!", components: [row] });
-    }else if(interaction.commandName == "modalities"){
-        const modal = new ModalBuilder()
-			.setCustomId('myModal')
-			.setTitle('My Modal');
-
-            const favoriteColorInput = new TextInputBuilder()
-			.setCustomId('favoriteColorInput')
-		    // The label is the prompt the user sees for this input
-			.setLabel("What's your favorite color?")
-		    // Short means only a single line of text
-			.setStyle(TextInputStyle.Short);
-
-		const hobbiesInput = new TextInputBuilder()
-			.setCustomId('hobbiesInput')
-			.setLabel("What's some of your favorite hobbies?")
-		    // Paragraph means multiple lines of text.
-			.setStyle(TextInputStyle.Paragraph);
-
-		// An action row only holds one text input,
-		// so you need one action row per text input.
-		const firstActionRow = new ActionRowBuilder().addComponents(favoriteColorInput);
-		const secondActionRow = new ActionRowBuilder().addComponents(hobbiesInput);
-
-		// Add inputs to the modal
-		modal.addComponents(firstActionRow, secondActionRow);
-
-            interaction.showModal(modal);
-    }
-    // if number 2 end
   } else {
     const command = interaction.client.commands.get(interaction.commandName);
 
@@ -158,14 +99,6 @@ async function main() {
           required: true,
         },
       ],
-    },
-    {
-      name: "button",
-      description: "You have entered a button command",
-    },
-    {
-        name: "modalities",
-        description: "Modalities of life"
     }
   ];
 
